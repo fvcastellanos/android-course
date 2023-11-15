@@ -27,4 +27,11 @@
         android:layout_height="wrap_content"
         android:onClick="nextLayout"
         android:text="Siguiente pantalla" />
+
+    <Button
+        android:id="@+id/btnThirdLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="redirectToPlusOperation"
+        android:text="Tercera Pantalla" />
 </LinearLayout>

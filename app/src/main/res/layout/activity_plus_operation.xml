@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PlusOperationActivity" >
+
+    <EditText
+        android:id="@+id/edMathGrade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Nota Matemática"
+        android:inputType="number|numberDecimal" />
+
+    <EditText
+        android:id="@+id/edITGrade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Nota Tecnología"
+        android:inputType="number|numberDecimal" />
+
+    <EditText
+        android:id="@+id/edSystemMaintenanceGrade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Nota Mantenimiento Sistema"
+        android:inputType="number|numberDecimal" />
+
+    <EditText
+        android:id="@+id/edLanguageGrade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Nota Lenguaje"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/edHistoryGrade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Nota Historia"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/edEthicsGrade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Nota Etica"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/btnCalculate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="plusGrades"
+        android:text="Calcular" />
+
+    <TextView
+        android:id="@+id/edPlus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/edMinus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/edMultiply"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/edDivision"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goToMainLayout"
+        android:text="Regresar" />
+</LinearLayout>

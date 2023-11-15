@@ -43,4 +43,10 @@ public class MainActivity extends AppCompatActivity {
         final var intent = new Intent(this, SecondScreen.class);
         startActivity(intent);
     }
+
+    public void redirectToPlusOperation(final View view) {
+
+        final var intent = new Intent(this, PlusOperationActivity.class);
+        startActivity(intent);
+    }
 }
