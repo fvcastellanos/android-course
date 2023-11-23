@@ -51,4 +51,10 @@
         android:layout_height="wrap_content"
         android:text="Guardar" />
 
+    <Button
+        android:id="@+id/btnExitFromProducts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Regresar" />
+
 </LinearLayout>

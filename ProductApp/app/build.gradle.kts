@@ -39,4 +39,7 @@ dependencies {
 
     implementation("org.apache.commons:commons-lang3:3.14.0")
     implementation("com.google.guava:guava:32.1.3-jre")
+
+    compileOnly("org.projectlombok:lombok:1.18.30")
+    annotationProcessor("org.projectlombok:lombok:1.18.30")
 }

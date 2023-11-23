@@ -2,14 +2,19 @@ package net.cavitos.android.product.app.layout;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
+import android.content.ContentValues;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import net.cavitos.android.product.app.MainActivity;
 import net.cavitos.android.product.app.R;
-import net.cavitos.android.product.app.domain.ProductRecord;
+import net.cavitos.android.product.app.domain.Product;
+import net.cavitos.android.product.app.repository.ProductRepository;
 
 public class ProductLayout extends BaseLayout {
+
+    private final ProductRepository productRepository;
 
     private EditText edProductName;
 
@@ -18,6 +23,11 @@ public class ProductLayout extends BaseLayout {
     private EditText edProductQuantity;
 
     private EditText edProductTotal;
+
+    public ProductLayout() {
+
+        this.productRepository = new ProductRepository(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +47,7 @@ public class ProductLayout extends BaseLayout {
 
                 final var product = getValues();
 
-                final var total = product.price() * product.quantity();
+                final var total = product.getPrice() * product.getQuantity();
 
                 edProductTotal.setText(Double.toString(total));
 
@@ -48,9 +58,31 @@ public class ProductLayout extends BaseLayout {
                     .show();
 
         });
+
+        final var btnExit = findViewById(R.id.btnExitFromProducts);
+
+        btnExit.setOnClickListener(view -> displayLayout(this, MainActivity.class));
+
+        final var btnSaveProduct = findViewById(R.id.btnSaveProduct);
+
+        btnSaveProduct.setOnClickListener(view -> {
+
+            if (validate()) {
+
+                productRepository.add(getValues());
+
+                Toast.makeText(this, "Producto ingresado!", Toast.LENGTH_LONG)
+                        .show();
+
+                return;
+            }
+
+            Toast.makeText(this, "Debe ingresar los valores", Toast.LENGTH_LONG)
+                    .show();
+        });
     }
 
-    private ProductRecord getValues() {
+    private Product getValues() {
 
         final var name = edProductName.getText()
                 .toString();
@@ -61,7 +93,7 @@ public class ProductLayout extends BaseLayout {
         final var quantityValue = edProductQuantity.getText()
                 .toString();
 
-        return new ProductRecord(
+        return new Product(
                 name,
                 Double.parseDouble(priceValue),
                 Double.parseDouble(quantityValue)
