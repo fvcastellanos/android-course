@@ -13,4 +13,9 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         app:srcCompat="@drawable/add_icon" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvProductListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

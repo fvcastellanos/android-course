@@ -1,11 +1,17 @@
 package net.cavitos.android.product.app.repository;
 
+import static java.lang.String.format;
+
 import android.content.ContentValues;
 import android.content.Context;
 
 import androidx.annotation.Nullable;
 
 import net.cavitos.android.product.app.domain.Product;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ProductRepository extends BaseRepository {
 
@@ -25,6 +31,39 @@ public class ProductRepository extends BaseRepository {
         contentValue.put("quantity", product.getQuantity());
 
         writableDatabase.insert(PRODUCT_TABLE, null, contentValue);
+    }
+
+    public List<Product> getProducts() {
+
+        final var readableDatabase = getReadableDatabase();
+
+        final var query = """
+                    select *
+                    from %s
+                    order by id desc
+                """;
+
+        try (final var cursor = readableDatabase.rawQuery(format(query, PRODUCT_TABLE), null)) {
+
+            final var productList = new ArrayList<Product>();
+
+            while (cursor.moveToNext()) {
+
+                final var product = new Product(
+                        cursor.getString(1),
+                        cursor.getDouble(2),
+                        cursor.getDouble(3)
+                );
+
+                productList.add(product);
+            }
+
+            return productList;
+
+        } catch (Exception exception) {
+
+            return Collections.emptyList();
+        }
     }
 }
 

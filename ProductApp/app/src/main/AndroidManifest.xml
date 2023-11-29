@@ -13,6 +13,9 @@
         android:theme="@style/Theme.ProductApp"
         tools:targetApi="31">
         <activity
+            android:name=".layout.ProductView"
+            android:exported="false" />
+        <activity
             android:name=".layout.ProductLayout"
             android:exported="false" />
         <activity
