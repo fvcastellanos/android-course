@@ -32,13 +32,6 @@
         android:text="TextView"
         android:textColor="#673AB7" />
 
-    <TextView
-        android:id="@+id/lbProductViewTotal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="#3F51B5" />
-
     <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

@@ -1,5 +1,6 @@
 package net.cavitos.android.product.app.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import net.cavitos.android.product.app.R;
 import net.cavitos.android.product.app.domain.Product;
+import net.cavitos.android.product.app.layout.ProductDetailLayout;
 
 import java.util.List;
 
@@ -46,9 +48,6 @@ public class ProductViewAdapter extends RecyclerView.Adapter<ProductViewAdapter.
         holder.getLbProductUnitPrice()
                 .setText(Double.toString(product.getPrice()));
 
-        holder.getLbProductTotal()
-                .setText(Double.toString(product.getPrice() * product.getQuantity()));
-
     }
 
     @Override
@@ -56,20 +55,31 @@ public class ProductViewAdapter extends RecyclerView.Adapter<ProductViewAdapter.
         return products.size();
     }
 
-    static class ProductViewHolder extends RecyclerView.ViewHolder {
+    class ProductViewHolder extends RecyclerView.ViewHolder {
 
         private TextView lbProductName;
         private TextView lbProductQuantity;
         private TextView lbProductUnitPrice;
-        private TextView lbProductTotal;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
 
             lbProductName = itemView.findViewById(R.id.lbProductViewName);
             lbProductQuantity = itemView.findViewById(R.id.lbProductViewQuantity);
-            lbProductTotal = itemView.findViewById(R.id.lbProductViewTotal);
             lbProductUnitPrice = itemView.findViewById(R.id.lbProductViewUnitPrice);
+
+            itemView.setOnClickListener(view -> {
+
+                final var context = itemView.getContext();
+
+                final var productId = products.get(getAdapterPosition())
+                        .getId();
+
+                final var intent = new Intent(context, ProductDetailLayout.class);
+                intent.putExtra("productId", productId);
+
+                context.startActivity(intent);
+            });
         }
 
         public TextView getLbProductName() {
@@ -82,10 +92,6 @@ public class ProductViewAdapter extends RecyclerView.Adapter<ProductViewAdapter.
 
         public TextView getLbProductUnitPrice() {
             return lbProductUnitPrice;
-        }
-
-        public TextView getLbProductTotal() {
-            return lbProductTotal;
         }
     }
 }

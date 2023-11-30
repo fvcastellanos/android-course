@@ -12,6 +12,7 @@ import net.cavitos.android.product.app.domain.Product;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class ProductRepository extends BaseRepository {
 
@@ -50,6 +51,7 @@ public class ProductRepository extends BaseRepository {
             while (cursor.moveToNext()) {
 
                 final var product = new Product(
+                        cursor.getInt(0),
                         cursor.getString(1),
                         cursor.getDouble(2),
                         cursor.getDouble(3)
@@ -64,6 +66,39 @@ public class ProductRepository extends BaseRepository {
 
             return Collections.emptyList();
         }
+    }
+
+    public Optional<Product> findById(final int id) {
+
+        final var readableDatabase = getReadableDatabase();
+
+        final var query = """
+                    select *
+                    from %s
+                    where id = %s
+                    limit 1
+                """;
+
+        try (final var cursor = readableDatabase.rawQuery(format(query, PRODUCT_TABLE, id), null)) {
+
+            if (cursor.moveToNext()) {
+
+                final var product = new Product(
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getDouble(2),
+                        cursor.getDouble(3)
+                );
+
+                return Optional.of(product);
+            }
+
+
+        } catch (Exception exception) {
+
+        }
+
+        return Optional.empty();
     }
 }
 
