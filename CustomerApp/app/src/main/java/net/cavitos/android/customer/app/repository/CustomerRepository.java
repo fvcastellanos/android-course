@@ -10,6 +10,7 @@ import net.cavitos.android.customer.app.domain.Customer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class CustomerRepository {
 
@@ -61,5 +62,39 @@ public class CustomerRepository {
 
             return Collections.emptyList();
         }
+    }
+
+    public Optional<Customer> findById(final int id) {
+
+        final var readableDatabase = sqLiteOpenHelper.getReadableDatabase();
+
+        final var query = """
+                    select *
+                    from %s
+                    where id = %s
+                    limit 1
+                """;
+
+        try (final var cursor = readableDatabase.rawQuery(format(query, CUSTOMER_TABLE, id), null)) {
+
+            if (cursor.moveToNext()) {
+
+                final var customer = new Customer(
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3)
+                );
+
+                return Optional.of(customer);
+            }
+
+
+        } catch (Exception exception) {
+
+            // do something
+        }
+
+        return Optional.empty();
     }
 }

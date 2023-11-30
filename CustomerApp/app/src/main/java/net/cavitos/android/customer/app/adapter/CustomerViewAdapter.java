@@ -1,15 +1,18 @@
 package net.cavitos.android.customer.app.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import net.cavitos.android.customer.app.R;
 import net.cavitos.android.customer.app.domain.Customer;
+import net.cavitos.android.customer.app.layout.CustomerDetailLayout;
 
 import java.util.List;
 
@@ -55,11 +58,11 @@ public class CustomerViewAdapter extends RecyclerView.Adapter<CustomerViewAdapte
 
     // ---------------------------------------------------------------------------------------
 
-    static class CustomerViewHolder extends RecyclerView.ViewHolder {
+    class CustomerViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView edCustomerName;
-        private TextView edCustomerCountry;
-        private TextView edCustomerCompany;
+        private final TextView edCustomerName;
+        private final TextView edCustomerCountry;
+        private final TextView edCustomerCompany;
 
         public CustomerViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -67,6 +70,19 @@ public class CustomerViewAdapter extends RecyclerView.Adapter<CustomerViewAdapte
             this.edCustomerName = itemView.findViewById(R.id.lbCustomerNameView);
             this.edCustomerCountry = itemView.findViewById(R.id.lbCustomerCountryView);
             this.edCustomerCompany = itemView.findViewById(R.id.lbCustomerCompanyView);
+
+            itemView.setOnClickListener(view -> {
+
+                final var context = itemView.getContext();
+
+                final var customerId = customers.get(getAdapterPosition())
+                        .getId();
+
+                final var intent = new Intent(context, CustomerDetailLayout.class);
+                intent.putExtra("customerId", customerId);
+
+                context.startActivity(intent);
+            });
         }
 
         public TextView getEdCustomerName() {
