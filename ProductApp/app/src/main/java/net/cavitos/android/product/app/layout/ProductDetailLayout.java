@@ -1,9 +1,6 @@
 package net.cavitos.android.product.app.layout;
 
-import static java.util.Objects.isNull;
-import static java.util.Objects.nonNull;
-
-import android.os.Build;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.widget.EditText;
@@ -31,15 +28,26 @@ public class ProductDetailLayout extends BaseLayout {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail_layout);
 
+        final var productId = getProductId(savedInstanceState);
+
         final var btnBack = findViewById(R.id.btnProductDetailBack);
         btnBack.setOnClickListener(view -> displayLayout(this, MainActivity.class));
+
+        final var btnEdit = findViewById(R.id.btnProductDetailEdit);
+        btnEdit.setOnClickListener(view -> {
+
+            final var intent = new Intent(this, ProductEditLayout.class);
+            intent.putExtra("productId", productId);
+
+            startActivity(intent);
+        });
 
         edProductName = findViewById(R.id.edProductDetailName);
         edProductQuantity = findViewById(R.id.edProductDetailQuantity);
         edProductPrice = findViewById(R.id.edProductDetailUnitPrice);
         edProductTotal = findViewById(R.id.edProductDetailTotal);
 
-        loadProductData(getProductId(savedInstanceState));
+        loadProductData(productId);
     }
 
     // ---------------------------------------------------------------------------
@@ -60,25 +68,5 @@ public class ProductDetailLayout extends BaseLayout {
             edProductQuantity.setInputType(InputType.TYPE_NULL);
             edProductPrice.setInputType(InputType.TYPE_NULL);
         });
-    }
-
-    private int getProductId(final Bundle savedInstanceState) {
-
-        if (isNull(savedInstanceState)) {
-
-            final var bundle = getIntent()
-                    .getExtras();
-
-            if (nonNull(bundle)) {
-
-                return bundle.getInt("productId");
-            }
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            return savedInstanceState.getSerializable("customerId", Integer.class);
-        }
-
-        return 0;
     }
 }

@@ -100,5 +100,33 @@ public class ProductRepository extends BaseRepository {
 
         return Optional.empty();
     }
+
+    public void update(final int id, final Product product) {
+
+        final var writableDatabase = getWritableDatabase();
+
+        final var queryLayout = """
+                    update %s
+                    set
+                      name = '%s',
+                      quantity = %s,
+                      price = %s
+                    where id = %s                      
+                    """;
+
+        final var query = format(queryLayout, PRODUCT_TABLE, product.getName(),
+                product.getQuantity(), product.getPrice(), id);
+
+        try {
+
+            writableDatabase.execSQL(query);
+
+        } catch (final Exception exception) {
+
+            exception.printStackTrace();
+
+            // do something
+        }
+    }
 }
 
