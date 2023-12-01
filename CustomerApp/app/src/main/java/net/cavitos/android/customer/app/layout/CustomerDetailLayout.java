@@ -3,10 +3,13 @@ package net.cavitos.android.customer.app.layout;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
 import android.widget.EditText;
+
+import com.google.common.collect.ImmutableMap;
 
 import net.cavitos.android.customer.app.MainActivity;
 import net.cavitos.android.customer.app.R;
@@ -37,6 +40,16 @@ public class CustomerDetailLayout extends BaseForm {
         final var btnBack = findViewById(R.id.btnCustomerDetailBack);
         btnBack.setOnClickListener(view -> displayLayout(this, MainActivity.class));
 
+        final var btnEdit = findViewById(R.id.btnCustomerDetailEdit);
+
+        btnEdit.setOnClickListener(view -> {
+
+            final var intent = new Intent(this, CustomerEditLayout.class);
+            intent.putExtra("customerId", customerId);
+
+            startActivity(intent);
+        });
+
         edCustomerName = findViewById(R.id.edCustomerDetailName);
         edCustomerCountry = findViewById(R.id.edCustomerDetailCountry);
         edCustomerCompany = findViewById(R.id.edCustomerDetailCompany);
@@ -60,25 +73,5 @@ public class CustomerDetailLayout extends BaseForm {
             edCustomerCompany.setInputType(InputType.TYPE_NULL);
             edCustomerCountry.setInputType(InputType.TYPE_NULL);
         });
-    }
-
-    private int getCustomerId(final Bundle savedInstanceState) {
-
-        if (isNull(savedInstanceState)) {
-
-            final var bundle = getIntent()
-                    .getExtras();
-
-            if (nonNull(bundle)) {
-
-                return bundle.getInt("customerId");
-            }
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            return savedInstanceState.getSerializable("customerId", Integer.class);
-        }
-
-        return 0;
     }
 }

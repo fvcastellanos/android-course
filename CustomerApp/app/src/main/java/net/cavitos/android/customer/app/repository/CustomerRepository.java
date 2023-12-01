@@ -97,4 +97,31 @@ public class CustomerRepository {
 
         return Optional.empty();
     }
+
+    public boolean update(final int id, final String name, final String country, final String company) {
+
+        final var writableDatabase = sqLiteOpenHelper.getWritableDatabase();
+
+        final var query = """
+                    update %s
+                    set
+                      name = '%s',
+                      country = '%s',
+                      company = '%s'
+                    where id = %s
+                """;
+
+        final var updateQuery = format(query, CUSTOMER_TABLE, name, country, company, id);
+
+        try {
+
+            writableDatabase.execSQL(updateQuery, new Object[] {});
+            return true;
+
+        } catch (Exception exception) {
+
+            return false;
+        }
+
+    }
 }

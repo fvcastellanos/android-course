@@ -5,63 +5,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".layout.CustomerDetailLayout">
+    tools:context=".layout.CustomerEditLayout">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Nombre del Cliente"
-        android:textColor="#3F51B5" />
+        android:textColor="#2196F3" />
 
     <EditText
-        android:id="@+id/edCustomerDetailName"
+        android:id="@+id/edCustomerEditName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Nombre del cliente"
         android:inputType="text" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Nacionalidad"
-        android:textColor="#3F51B5" />
+        android:textColor="#2196F3" />
 
     <EditText
-        android:id="@+id/edCustomerDetailCountry"
+        android:id="@+id/edCustomerEditCountry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Nacionalidad"
         android:inputType="text" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Empresa"
-        android:textColor="#3F51B5" />
+        android:textColor="#2196F3" />
 
     <EditText
-        android:id="@+id/edCustomerDetailCompany"
+        android:id="@+id/edCustomerEditCompany"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Empresa"
         android:inputType="text" />
 
     <ImageButton
-        android:id="@+id/btnCustomerDetailBack"
+        android:id="@+id/btnCustomerEditBack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/back_icon" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnCustomerDetailEdit"
+    <ImageButton
+        android:id="@+id/btnCustomerEditSave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        app:srcCompat="@drawable/edit_icon" />
+        android:src="@drawable/save_icon" />
+
 </LinearLayout>

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.CustomerApp"
         tools:targetApi="31">
         <activity
+            android:name=".layout.CustomerEditLayout"
+            android:exported="false" />
+        <activity
             android:name=".layout.CustomerDetailLayout"
             android:exported="false" />
         <activity
