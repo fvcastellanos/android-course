@@ -7,11 +7,14 @@ public class Customer {
     private final String country;
     private final String company;
 
-    public Customer(int id, String name, String country, String company) {
+    private final String photoPath;
+
+    public Customer(int id, String name, String country, String company, String photoPath) {
         this.id = id;
         this.name = name;
         this.country = country;
         this.company = company;
+        this.photoPath = photoPath;
     }
 
     public int getId() {
@@ -28,5 +31,9 @@ public class Customer {
 
     public String getCompany() {
         return company;
+    }
+
+    public String getPhotoPath() {
+        return photoPath;
     }
 }

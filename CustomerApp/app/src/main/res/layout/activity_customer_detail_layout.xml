@@ -52,6 +52,12 @@
         android:hint="Empresa"
         android:inputType="text" />
 
+    <ImageView
+        android:id="@+id/imgCustomerDetailPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="208dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
     <ImageButton
         android:id="@+id/btnCustomerDetailBack"
         android:layout_width="match_parent"
@@ -64,4 +70,11 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         app:srcCompat="@drawable/edit_icon" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnCustomerDetailDelete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:srcCompat="@drawable/delete_icon" />
 </LinearLayout>

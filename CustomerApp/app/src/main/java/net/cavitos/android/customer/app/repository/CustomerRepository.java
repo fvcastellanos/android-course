@@ -50,7 +50,8 @@ public class CustomerRepository {
                         cursor.getInt(0),
                         cursor.getString(1),
                         cursor.getString(2),
-                        cursor.getString(3)
+                        cursor.getString(3),
+                        cursor.getString(4)
                 );
 
                 customerList.add(customer);
@@ -83,7 +84,8 @@ public class CustomerRepository {
                         cursor.getInt(0),
                         cursor.getString(1),
                         cursor.getString(2),
-                        cursor.getString(3)
+                        cursor.getString(3),
+                        cursor.getString(4)
                 );
 
                 return Optional.of(customer);
@@ -98,7 +100,11 @@ public class CustomerRepository {
         return Optional.empty();
     }
 
-    public boolean update(final int id, final String name, final String country, final String company) {
+    public boolean update(final int id,
+                          final String name,
+                          final String country,
+                          final String company,
+                          final String photoPath) {
 
         final var writableDatabase = sqLiteOpenHelper.getWritableDatabase();
 
@@ -107,11 +113,12 @@ public class CustomerRepository {
                     set
                       name = '%s',
                       country = '%s',
-                      company = '%s'
+                      company = '%s',
+                      photo_path = '%s'
                     where id = %s
                 """;
 
-        final var updateQuery = format(query, CUSTOMER_TABLE, name, country, company, id);
+        final var updateQuery = format(query, CUSTOMER_TABLE, name, country, company, photoPath, id);
 
         try {
 
@@ -123,5 +130,27 @@ public class CustomerRepository {
             return false;
         }
 
+    }
+
+    public boolean delete(final int id) {
+
+        final var writableDatabase = sqLiteOpenHelper.getWritableDatabase();
+
+        final var query = """
+                    delete from %s
+                    where id = %s
+                """;
+
+        final var deleteQuery = format(query, CUSTOMER_TABLE, id);
+
+        try {
+
+            writableDatabase.execSQL(deleteQuery, new Object[] {});
+            return true;
+
+        } catch (Exception exception) {
+
+            return false;
+        }
     }
 }

@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 public class DBConnection extends SQLiteOpenHelper {
 
     private static final int DB_VERSION = 1;
-    private static final String DATABASE_ID = "customerInventory.db";
+    private static final String DATABASE_ID = "customerInventoryWithPhoto.db";
     private static final String CUSTOMER_TABLE = "customer";
 
     public DBConnection(@Nullable Context context) {
@@ -24,7 +24,8 @@ public class DBConnection extends SQLiteOpenHelper {
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     name TEXT NOT NULL,
                     country TEXT NOT NULL,
-                    company TEXT NOT NULL    
+                    company TEXT NOT NULL,
+                    photo_path TEXT
                 )
                 """;
 

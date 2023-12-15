@@ -31,6 +31,18 @@
         android:hint="Ingrese empresa"
         android:inputType="text" />
 
+    <ImageView
+        android:id="@+id/imgFormCustomer"
+        android:layout_width="match_parent"
+        android:layout_height="208dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/btnFormCustomerPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/photo_icon" />
+
     <ImageButton
         android:id="@+id/btnSaveCustomer"
         android:layout_width="match_parent"

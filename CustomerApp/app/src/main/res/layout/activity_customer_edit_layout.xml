@@ -49,16 +49,28 @@
         android:ems="10"
         android:inputType="text" />
 
+    <ImageView
+        android:id="@+id/imgCustomerEditView"
+        android:layout_width="match_parent"
+        android:layout_height="216dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
     <ImageButton
-        android:id="@+id/btnCustomerEditBack"
+        android:id="@+id/btnCustomerEditPhoto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/back_icon" />
+        app:srcCompat="@drawable/photo_icon" />
 
     <ImageButton
         android:id="@+id/btnCustomerEditSave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/save_icon" />
+
+    <ImageButton
+        android:id="@+id/btnCustomerEditBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/back_icon" />
 
 </LinearLayout>
